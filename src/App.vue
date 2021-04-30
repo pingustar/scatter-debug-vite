@@ -1,17 +1,16 @@
 <template>
-  <div>Username: {{username}}</div>
+  <button @click="login">Login</button>
+  <div v-if="username">Username: {{ username }}</div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-// @ts-ignore
 import ScatterJS from "@scatterjs/core";
-// @ts-ignore
 import ScatterEOS from "@scatterjs/eosjs2";
 
 const username = ref<string>("");
 
-onMounted(async () => {
+const login = async () => {
   ScatterJS.plugins(new ScatterEOS());
 
   const network = ScatterJS.Network.fromJson({
@@ -31,18 +30,7 @@ onMounted(async () => {
   const account = ScatterJS.account("eos");
 
   if (!account) return console.error("no account");
-  console.log(account)
-  username.value = account.name
-});
+  console.log(account);
+  username.value = account.name;
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
