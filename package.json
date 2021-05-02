@@ -6,6 +6,10 @@
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview"
   },
+  "browser": {
+    "crypto": false,
+    "buffer": true
+  },
   "dependencies": {
     "@scatterjs/core": "^2.7.54",
     "@scatterjs/eosjs2": "^1.5.36",
